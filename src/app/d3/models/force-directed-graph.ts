@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
-import { Link, Node } from './';
+import { Link } from './link';
+import { Node } from './node';
 import * as d3 from 'd3';
 
 const FORCES = {
@@ -67,11 +68,11 @@ export class ForceDirectedGraph {
       const ticker = this.ticker;
 
       this.simulation = d3.forceSimulation()
-        .force("charge",
+        .force('charge',
           d3.forceManyBody()
             .strength(d => FORCES.CHARGE * d['r'])
         )
-        .force("collide",
+        .force('collide',
           d3.forceCollide()
             .strength(FORCES.COLLISION)
             .radius(d => d['r'] + 5).iterations(2)
@@ -87,7 +88,7 @@ export class ForceDirectedGraph {
     }
 
     /** Updating the central force of the simulation */
-    this.simulation.force("centers", d3.forceCenter(options.width / 2, options.height / 2));
+    this.simulation.force('centers', d3.forceCenter(options.width / 2, options.height / 2));
 
     /** Restarting the simulation internal timer */
     this.simulation.restart();

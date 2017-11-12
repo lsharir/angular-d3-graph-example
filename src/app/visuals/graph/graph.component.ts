@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, HostListener, ChangeDetectionStrategy, OnInit, AfterViewInit } from '@angular/core';
 import { D3Service, ForceDirectedGraph, Node } from '../../d3';
 
 @Component({
@@ -15,18 +15,19 @@ import { D3Service, ForceDirectedGraph, Node } from '../../d3';
   `,
   styleUrls: ['./graph.component.css']
 })
-export class GraphComponent {
+export class GraphComponent implements OnInit, AfterViewInit {
   @Input('nodes') nodes;
   @Input('links') links;
+  graph: ForceDirectedGraph;
+  private _options: { width, height } = { width: 800, height: 600 };
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.graph.initSimulation(this.options);
   }
 
-  graph: ForceDirectedGraph;
 
-  constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) { }
+  constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) {}
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
@@ -45,8 +46,6 @@ export class GraphComponent {
   ngAfterViewInit() {
     this.graph.initSimulation(this.options);
   }
-
-  private _options: { width, height } = { width: 800, height: 600 };
 
   get options() {
     return this._options = {
