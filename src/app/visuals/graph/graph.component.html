@@ -1,0 +1,7 @@
+<svg #svgReference [attr.width]="windowOptions.width" [attr.height]="windowOptions.height">
+    <g appZoomable [zoomableOf]="svgReference">
+        <g app-link [link]="link" *ngFor="let link of links"></g>
+        <g app-node [node]="node" *ngFor="let node of nodes" appDraggable [draggableInGraph]="graph"
+           [draggableNode]="node"></g>
+    </g>
+</svg>
