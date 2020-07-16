@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { D3Service, D3_DIRECTIVES } from './d3';
 
@@ -19,8 +18,7 @@ import { SHARED_VISUALS } from './visuals/shared';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    FormsModule
   ],
   providers: [D3Service],
   bootstrap: [AppComponent]
