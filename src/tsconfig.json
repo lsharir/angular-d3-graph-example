@@ -2,17 +2,25 @@
   "compilerOptions": {
     "baseUrl": "",
     "declaration": false,
+    "downlevelIteration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": ["es6", "dom"],
     "mapRoot": "./",
-    "module": "es6",
+    "module": "es2020",
     "moduleResolution": "node",
     "outDir": "../dist/out-tsc",
     "sourceMap": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "../node_modules/@types"
     ]
-  }
+  },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
 }
